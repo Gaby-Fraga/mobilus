@@ -1,6 +1,6 @@
 # Mobilus - Covid 19
 
-Projeto desenvolvido utilizando Angular 2, na versão 11.1.2.
+Projeto desenvolvido utilizando Angular 11, na versão 11.1.2.
 
 O projeto consome a API solicitada nas orientações diretamente através de um serviço no próprio Angular. Persistência de dados não foi implementada.
 
