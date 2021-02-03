@@ -1,6 +1,43 @@
 <h3>{{title}}</h3>
 
 <mat-tab-group>
-  <mat-tab label="Média Móvel -- Últimas Duas Semanas"> a </mat-tab>
-  <mat-tab label="Maiores Números de Casos e Mortes"> b </mat-tab>
+  <mat-tab label="Média Móvel -- Últimas Duas Semanas"> 
+
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <div class="row">
+          <h3>Média</h3>
+          {{ node.day.Date | date }} -- Deaths: {{ node.weekDeathAvg | number }}
+        </div>
+        <break></break>
+        <div class="row">
+          <h3>Dias usados</h3>
+          <li class="mat-tree-node">
+            <ul *ngFor="let weekDay of node.weekCases; let i=index"><div *ngIf="i < 7">{{ weekDay.Date | date }} -- Deaths: {{ weekDay.Deaths | number }}</div></ul>
+          </li>
+        </div>
+        
+      </mat-tree-node>
+
+    </mat-tree>
+
+  </mat-tab>
+  <mat-tab label="Maiores Números de Casos e Mortes">  
+  
+    <div class="row">
+      <h3>Casos</h3>
+      <li class="mat-tree-node">
+        <ul *ngFor="let confirmed of allCases; let i=index">{{ confirmed.day.Date | date }} -- Deaths: {{
+          confirmed.confirmed | number }}</ul>
+      </li>
+    </div>
+    <div class="row">
+      <h3>Mortes</h3>
+      <li class="mat-tree-node">
+        <ul *ngFor="let death of allDeaths; let i=index">{{ death.day.Date | date }} -- Deaths: {{ death.deaths | number
+          }}</ul>
+      </li>
+    </div>
+  
+  </mat-tab>
 </mat-tab-group>
